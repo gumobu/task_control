@@ -5,7 +5,7 @@ from django.utils import timezone
 class Issue(models.Model):
     """Модель задачи с основными полями"""
     id = models.AutoField(primary_key=True, verbose_name='Задача')  # Идентификатор задачи
-    project_id = models.ForeignKey('project.Project', null=True, on_delete=models.CASCADE)
+    project_id = models.ForeignKey('project.Project', null=True, on_delete=models.SET_NULL)  # Идентификатор проекта
     title = models.CharField(max_length=200, unique=True, verbose_name='Название')  # Название задачи
     created_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата создания')  # Дата создания задачи
     updated_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата обновления')  # Дата обновления задачи
