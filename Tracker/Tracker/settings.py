@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'project',
     'Tracker',
     'issue',
+    'account',
 ]
 
 MIDDLEWARE = [
