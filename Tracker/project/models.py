@@ -26,4 +26,4 @@ class Project(models.Model):
 
     def __str__(self):
         """Строковое представление проекта - его идентификатор"""
-        return self.id
+        return f'[{self.id}] {self.title}'

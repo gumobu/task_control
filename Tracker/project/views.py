@@ -1,9 +1,12 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Project
 
 
 def projects_list(request):
     """Отображение всех проектов"""
-    return HttpResponse("Hello, world. Здесь будут находиться все проекты")
+    projects = Project.objects.all()
+    return render(request, 'projects_list.html', locals())
 
 
 def project_detail(request, project_id):
