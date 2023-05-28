@@ -6,9 +6,18 @@ from django.contrib.auth.models import User
 
 class Issue(models.Model):
     """Модель задачи с основными полями"""
+    statuses = [
+        ('CRT', 'Создана'),
+        ('ANA', 'В анализе'),
+        ('WRK', 'В работе'),
+        ('DCL', 'Отменена'),
+        ('END', 'Завершена'),
+    ]
     id = models.AutoField(primary_key=True, verbose_name='Задача')  # Идентификатор задачи
     project = models.ForeignKey('project.Project', null=True, on_delete=models.SET_NULL)  # Идентификатор проекта
     title = models.CharField(max_length=200, unique=True, verbose_name='Название')  # Название задачи
+    description = models.TextField(null=True, verbose_name='Описание')  # Описание задачи
+    status = models.CharField(max_length=3, choices=statuses, default='CRT')
     created_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата создания')  # Дата создания задачи
     updated_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата обновления')  # Дата обновления задачи
     end_date = models.DateTimeField(null=True, verbose_name='Дата закрытия')  # Дата завершения задачи

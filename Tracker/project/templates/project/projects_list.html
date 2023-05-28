@@ -1,0 +1,10 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1>{{ page_title }}</h1>
+    <p>Список доступных проектов</p>
+    {% for project in projects %}
+        <p>{{ project }}</p>
+        <hr>
+    {% endfor %}
+{% endblock content %}

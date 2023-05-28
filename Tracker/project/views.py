@@ -1,15 +1,16 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Project
+from .models import *
 
 
 def projects_list(request):
     """Отображение всех проектов"""
     projects = Project.objects.all()
-    return render(request, 'projects_list.html', locals())
+    page_title = 'Список проектов'
+    return render(request, 'project/projects_list.html', locals())
 
 
 def project_detail(request, project_id):
     """Отображение подробной информации о проекте"""
-    response = "Подробная информация о проекте "
-    return HttpResponse(response + str(project_id))
+    page_title = f'Проект {project_id}'
+    project = Project.objects.get(id=project_id)
+    return render(request, 'project/project_detail.html', locals())
