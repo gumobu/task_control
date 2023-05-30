@@ -1,0 +1,52 @@
+/*Верхнее меню страницы*/
+.menu {
+    display: block;
+    padding-left: 0;
+    overflow: hidden;
+    background-color: rgb(82, 192, 30);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    z-index: 999;
+}
+.menu li {
+    display: inline;
+}
+
+.menu a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    background-color: rgb(255, 244, 183);
+    color: black;
+}
+
+body {
+    margin-top: 50px;
+    background-color: rgb(255, 244, 183);
+}
+
+.body_content {
+    min-height: calc(100vh - 2.5ch - 50px);
+}
+
+.body_content p {
+    padding-left: 14px;
+}
+
+.body_content h1 {
+    padding-left: 14px;
+}
+
+footer {
+    height: 2.5ch;
+    width: 100%;
+    background-color: rgb(82, 192, 30);
+}

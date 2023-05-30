@@ -8,7 +8,7 @@ class Project(models.Model):
     id = models.AutoField(unique=True, primary_key=True, verbose_name='Проект')  # Идентификатор проекта
     title = models.CharField(max_length=200, unique=True, verbose_name='Название')  # Название проекта
     created_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата создания')  # Дата создания проекта
-    updated_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата обновления')  # Дата обновления проектам
+    updated_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата обновления')  # Дата обновления проекта
     end_date = models.DateTimeField(null=True, verbose_name='Дата закрытия')  # Дата завершения проекта
 
     def end(self):

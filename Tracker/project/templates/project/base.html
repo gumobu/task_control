@@ -1,19 +1,22 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "project/css/styles.css" %}" />
     <title>{{ title }}</title>
 </head>
-<body>
-  {% block mainmenu %}
-    <ul>
-      <li>Проекты</li>
-      <li>Задачи</li>
-      <li>Профиль</li>
-    </ul>
-  {% endblock mainmenu %}
-
-  {% block content %}
-  {% endblock content %}
+<body marginwidth=0 marginheight=0>
+    <div class="body_content">
+        <ul class="menu">
+            <a href="http://127.0.0.1:8000/project/">Главная</a>
+            <a href="http://127.0.0.1:8000/project/">Проекты</a>
+            <a href="http://127.0.0.1:8000/project/">Задачи</a>
+            <a href="http://127.0.0.1:8000/project/">Профиль</a>
+        </ul>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <footer class="footer">Сделано Фурсаевым К. в качестве дипломной работы в 2023 году</footer>
 </body>
 </html>
