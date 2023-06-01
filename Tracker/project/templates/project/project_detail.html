@@ -2,6 +2,10 @@
 
 {% block content %}
     <h1>{{ page_title }}</h1>
-    <p>{{ project.id }}</p>
-    <p>{{ project.title }}</p>
+    <h1>Задачи в проекте</h1>
+    {% for issue in issues %}
+        <p class="project_in_list"><a href="{{ issue.get_absolute_url }}">[{{ issue.id }}] {{ issue.title }}</a></p>
+    {% empty %}
+        <p>Задач в проекте {{ project.id }} не найдено! Требуется создать задачу для ее появления в списке</p>
+    {% endfor %}
 {% endblock content %}

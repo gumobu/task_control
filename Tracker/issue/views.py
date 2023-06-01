@@ -1,11 +1,12 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from .models import *
 
 
-def issues_list(request, project_id):
-    """Отображение всех задач"""
-    return HttpResponse(f"Все задачи проекта {project_id}")
+def issues_list(request):
+    return render(request, 'issue/issues_list.html', locals())
 
 
-def issue_detail(request, project_id, issue_id):
-    """Отображение подробной информации о проекте"""
-    return HttpResponse(f"Задача {issue_id} из проекта {project_id}")
+def issue_detail(request, issue_id):
+    """Отображение подробной информации о задаче"""
+    return render(request, 'issue/issue_detail.html', locals())

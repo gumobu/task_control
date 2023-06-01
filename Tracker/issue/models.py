@@ -1,5 +1,5 @@
 from django.db import models
-from django.conf import settings
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -13,8 +13,8 @@ class Issue(models.Model):
         ('DCL', 'Отменена'),
         ('END', 'Завершена'),
     ]
-    id = models.AutoField(primary_key=True, verbose_name='Задача')  # Идентификатор задачи
-    project = models.ForeignKey('project.Project', null=True, on_delete=models.SET_NULL)  # Идентификатор проекта
+    id = models.AutoField(primary_key=True, verbose_name='issue')  # Идентификатор задачи
+    project = models.ForeignKey('project.Project', related_name='issues', null=True, on_delete=models.SET_NULL)  # Идентификатор проекта
     title = models.CharField(max_length=200, unique=True, verbose_name='Название')  # Название задачи
     description = models.TextField(null=True, verbose_name='Описание')  # Описание задачи
     status = models.CharField(max_length=3, choices=statuses, default='CRT')
@@ -41,4 +41,7 @@ class Issue(models.Model):
 
     def __str__(self):
         """Строковое представление задачи - ее идентификатор"""
-        return self.id
+        return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse('issue', kwargs={'issue_id':self.id})

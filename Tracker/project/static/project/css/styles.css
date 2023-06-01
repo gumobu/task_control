@@ -41,7 +41,7 @@ body {
     padding-left: 14px;
 }
 
-.body_content h1 {
+.body_content h1, h2, p{
     padding-left: 14px;
 }
 
@@ -49,4 +49,21 @@ footer {
     height: 2.5ch;
     width: 100%;
     background-color: rgb(82, 192, 30);
+}
+
+.project_in_list {
+    background-color: #89de5d;
+    border-radius: 15px;
+    width: 65vw;
+    height: 4em;
+    margin-left: 12px;
+    margin-top: 0;
+    padding-top: 0.5em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.project_in_list a {
+    text-decoration: none;
+    color: black;
 }
