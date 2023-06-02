@@ -3,7 +3,15 @@
 {% block content %}
     <h1>{{ page_title }}</h1>
     {% for project in projects %}
-        <p class="project_in_list"><a href="{{ project.get_absolute_url }}">[{{ project.id }}] {{ project.title }}</a></p>
+        <div>
+            <div class="left-part">
+                <p class="project_in_list">
+                    <b>
+                        <a href="{{ project.get_absolute_url }}">[{{ project.id }}] {{ project.title }}</a>
+                    </b>
+                </p>
+            </div>
+        </div>
     {% empty %}
         <p>Проектов не найдено! Требуется создать новый, прежде чем просматривать список</p>
     {% endfor %}

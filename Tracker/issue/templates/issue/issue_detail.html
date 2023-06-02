@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'project/base.html' %}
 
-</body>
-</html>
+{% block content %}
+    <h1>[{{ issue_id }}] {{ issue.title }}</h1>
+    <h1>Описание задачи</h1>
+    {% if issue.description|length > 0 %}
+        <p>Описание задачи не заполнено</p>
+    {% else %}
+        <p>{{ issue.desc }}</p>
+    {% endif %}
+    <h1>Дочерние задачи</h1>
+    {% for c_issue in child_issues %}
+        <div>
+            <div class="left-part">
+                <p class="project_in_list">
+                    <b><a href="{{ c_issue.get_absolute_url }}">[{{ c_issue.id }}] {{ c_issue.title }}</a><br/>
+                    </b>{{ issue.description }}
+                </p>
+            </div>
+            <div class="right-part">
+                <p>Статус: {{ c_issue.get_status_display }}</p>
+                {% if c_issue.is_over_due and c_issue.status != "DCL" or c_issue.is_over_due and c_issue.status != "END" %}
+                    <p class="overdue">План. окончание: {{ c_issue.plan_end_date }}</p>
+                {% elif issue.status != "DCL" or c_issue.status != "END"%}
+                    <p class="notoverdue">План. окончание: {{ c_issue.plan_end_date }}</p>
+                {% else %}
+                    <p>План. окончание: {{ c_issue.plan_end_date }}</p>
+                {% endif %}
+                {% if c_issue.assignee|length > 0 %}
+                    <p>Исполнитель: {c_issue.assignee.user.first_name} {c_issue.assignee.user.last_name.first}.</p>
+                {% else %}
+                    <p>Исполнитель: не назначен</p>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>Не найдено дочерних задач для текущей задачи</p>
+    {% endfor %}
+{% endblock content %}

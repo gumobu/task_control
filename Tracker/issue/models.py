@@ -20,8 +20,9 @@ class Issue(models.Model):
     status = models.CharField(max_length=3, choices=statuses, default='CRT')
     created_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата создания')  # Дата создания задачи
     updated_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата обновления')  # Дата обновления задачи
-    end_date = models.DateTimeField(null=True, verbose_name='Дата закрытия')  # Дата завершения задачи
-    parent_issue = models.ForeignKey('self', on_delete=models.CASCADE, null=True)  # Идентификатор родительской задачи
+    plan_end_date = models.DateField(null=False, default=timezone.now().date() + timezone.timedelta(7), verbose_name="Плановая дата завершения")
+    fact_end_date = models.DateTimeField(null=True, verbose_name='Фактическая дата завершения задачи')  # Дата завершения задачи
+    parent_issue = models.ForeignKey('self', on_delete=models.CASCADE, null=True, related_name='child')  # Идентификатор родительской задачи
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_by')  # Автор задачи
     assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='assignee')  # Исполнитель задачи
     watcher = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='watcher')  # Наблюдатель задачи
@@ -42,6 +43,10 @@ class Issue(models.Model):
     def __str__(self):
         """Строковое представление задачи - ее идентификатор"""
         return str(self.id)
+
+    @property
+    def is_over_due(self):
+        return timezone.now().date() > self.plan_end_date
 
     def get_absolute_url(self):
         return reverse('issue', kwargs={'issue_id':self.id})

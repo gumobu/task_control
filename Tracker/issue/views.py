@@ -9,4 +9,6 @@ def issues_list(request):
 
 def issue_detail(request, issue_id):
     """Отображение подробной информации о задаче"""
+    issue = Issue.objects.get(id=issue_id)
+    child_issues = issue.child.all()
     return render(request, 'issue/issue_detail.html', locals())

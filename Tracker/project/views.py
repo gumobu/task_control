@@ -15,6 +15,7 @@ def project_detail(request, project_id):
     page_title = f'Проект {project_id}'
     title = page_title
     project = Project.objects.get(id=project_id)
+    cur_date = timezone.now().date()
     issues = project.issues.all()
     return render(request, 'project/project_detail.html', locals())
 

@@ -59,11 +59,38 @@ footer {
     margin-left: 12px;
     margin-top: 0;
     padding-top: 0.5em;
-    font-weight: bold;
     text-decoration: none;
 }
 
 .project_in_list a {
     text-decoration: none;
     color: black;
+}
+
+.left-part {
+    width: calc(65vw * 0.6);
+    display: inline-block;
+}
+
+.right-part {
+    position: absolute;
+    display: inline-block;
+}
+
+.left-part p {
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+.right-part p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.overdue {
+    background-color: red;
+}
+
+.notoverdue {
+    background-color: greenyellow;
 }

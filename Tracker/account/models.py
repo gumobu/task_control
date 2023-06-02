@@ -22,3 +22,6 @@ class Profile(models.Model):
     def __str__(self):
         """Строковое представление пользователя"""
         return f'Profile for user {self.user.username}'
+
+    def get_absolute_url(self):
+        pass

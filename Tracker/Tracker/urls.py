@@ -7,4 +7,5 @@ urlpatterns = [
     path('project/', include('project.urls')),
     path('issue/', include('issue.urls')),
     path("account/<str:user_id>/", include('account.urls')),
+
 ]
