@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Tracker',
     'issue',
     'account',
+    'mainpage',
 ]
 
 MIDDLEWARE = [

@@ -94,3 +94,35 @@ footer {
 .notoverdue {
     background-color: greenyellow;
 }
+
+.mainpage {
+    margin-top: 20vh;
+    width: 100%;
+}
+
+.mainpage p {
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.mainpage a {
+    display: inline-block;
+    border-radius: 16px;
+    border-style: inset;
+    text-align: center;
+    background: #89de5d;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: x-large;
+    width: 25vw;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-left: 37.5vw;
+}
+
+.mainpage a:hover {
+    background: rgb(255, 244, 183);
+    border-style: none;
+}
