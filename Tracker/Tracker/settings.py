@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'issue',
     'account',
     'mainpage',
+    'analytics',
 ]
 
 MIDDLEWARE = [
