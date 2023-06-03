@@ -2,11 +2,9 @@
 
 {% block content %}
   <h1>{{ page_title }}</h1>
-  <form action="/add_project/" method="post">
-    <label for="title">Название проекта: </label>
-    <input id="title" type="text" name="title_field" maxlength=200>
-    <label for="plan_end_date">Название проекта: </label>
-    <input id="plan_end_date" type="date" name="plan_end_date_field">
-    <input type="submit" value="OK">
+  <form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="form-submit-button">Сохранить</button>
   </form>
 {% endblock content %}

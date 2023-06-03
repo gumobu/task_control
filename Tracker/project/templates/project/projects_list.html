@@ -3,7 +3,7 @@
 {% block content %}
     <h1>{{ page_title }}</h1>
     <div class="addobject">
-        <a>Добавить проект</a>
+        <a href="{% url 'create_project' %}">Добавить проект</a>
     </div>
     {% for project in projects %}
         <div>
