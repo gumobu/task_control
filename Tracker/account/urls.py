@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    path("", views.profile_detail, name="Информация о аккаунте"),
+    path("<str:user_id>/", views.profile_detail, name="profile_detail"),
 ]

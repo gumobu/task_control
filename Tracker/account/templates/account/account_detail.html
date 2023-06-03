@@ -1,0 +1,14 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1>{{ page_title }}</h1>
+    <div>
+        <p><b>Имя:</b> {{ profile.user.first_name }}</p>
+        <p><b>Фамилия:</b> {{ profile.user.last_name }}</p>
+        <p><b>Подразделение:</b> {{ profile.division.name }}</p>
+        <p><b>Должность:</b> {{ profile.position.name }}</p>
+    </div>
+    <div class="addobject">
+        <a>Изменить профиль</a>
+    </div>
+{% endblock content %}

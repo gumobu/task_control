@@ -4,9 +4,9 @@
     <h1>[{{ issue_id }}] {{ issue.title }}</h1>
     <h1>Описание задачи</h1>
     {% if issue.description|length > 0 %}
-        <p>Описание задачи не заполнено</p>
+        <p>{{ issue.description }}</p>
     {% else %}
-        <p>{{ issue.desc }}</p>
+        <p>Описание задачи не заполнено</p>
     {% endif %}
     <h1>Дочерние задачи</h1>
     {% for c_issue in child_issues %}
@@ -14,7 +14,7 @@
             <div class="left-part">
                 <p class="project_in_list">
                     <b><a href="{{ c_issue.get_absolute_url }}">[{{ c_issue.id }}] {{ c_issue.title }}</a><br/>
-                    </b>{{ issue.description }}
+                    </b>{{ c_issue.description }}
                 </p>
             </div>
             <div class="right-part">
@@ -30,6 +30,11 @@
                     <p>Исполнитель: {c_issue.assignee.user.first_name} {c_issue.assignee.user.last_name.first}.</p>
                 {% else %}
                     <p>Исполнитель: не назначен</p>
+                {% endif %}
+                {% if c_issue.created_by|length > 0 %}
+                    <p>Создатель: {c_issue.created_by.user.first_name} {c_issue.created_by.user.last_name.first}.</p>
+                {% else %}
+                    <p>Создатель: не определен</p>
                 {% endif %}
             </div>
         </div>

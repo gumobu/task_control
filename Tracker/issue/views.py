@@ -4,6 +4,9 @@ from .models import *
 
 
 def issues_list(request):
+    title = 'Список задач системы'
+    page_title = 'Список существующих задач'
+    issues = Issue.objects.all().order_by('id')
     return render(request, 'issue/issues_list.html', locals())
 
 

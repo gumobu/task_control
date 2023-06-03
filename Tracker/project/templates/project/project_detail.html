@@ -3,6 +3,9 @@
 {% block content %}
     <h1>{{ page_title }}</h1>
     <h1>Задачи в проекте</h1>
+    <div class="addobject">
+        <a>Добавить задачу</a>
+    </div>
     {% for issue in issues %}
         <div>
             <div class="left-part">
@@ -14,7 +17,11 @@
                             <a href="{{ issue.get_absolute_url }}">[{{ issue.id }}] {{ issue.title }}</a>
                         {% endif %}
                     </b>
-                    <br/>{{ issue.description }}
+                    {% if issue.description|length > 85 %}
+                    <br/>{{ issue.description|slice:":82" }}...
+                    {% else %}
+                    <br/>{{ issue.description|slice:":82" }}
+                    {% endif %}
                 </p>
             </div>
             <div class="right-part">

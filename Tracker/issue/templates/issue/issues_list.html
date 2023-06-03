@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'project/base.html' %}
 
-</body>
-</html>
+{% block content %}
+    <h1>{{ page_title }}</h1>
+    <div class="addobject">
+        <a>Добавить задачу</a>
+    </div>
+    {% for issue in issues %}
+        <div>
+            <div class="left-part">
+                <p class="project_in_list">
+                    <b>
+                        {% if not issue.parent_issue is None %}
+                            <a href="{{ issue.get_absolute_url }}">[{{ issue.id }}]->[{{ issue.parent_issue.id }}] {{ issue.title }}</a>
+                        {% else %}
+                            <a href="{{ issue.get_absolute_url }}">[{{ issue.id }}] {{ issue.title }}</a>
+                        {% endif %}
+                    </b>
+                    {% if issue.description|length > 85 %}
+                    <br/>{{ issue.description|slice:":82" }}...
+                    {% else %}
+                    <br/>{{ issue.description|slice:":82" }}
+                    {% endif %}
+                </p>
+            </div>
+            <div class="right-part">
+                <div style="display: flex; justify-content: space-around">
+                    <p>Статус: {{ issue.get_status_display }}</p>
+                    <p>Проект: <a style="text-decoration: none; color: black" href="{{ issue.project.get_absolute_url }}">{{ issue.project }}</a></p>
+                </div>
+                {% if issue.is_over_due and issue.status != "DCL" or issue.is_over_due and issue.status != "END" %}
+                    <p class="overdue">План. окончание: {{ issue.plan_end_date }}</p>
+                {% elif issue.status != "DCL" or issue.status != "END"%}
+                    <p class="notoverdue">План. окончание: {{ issue.plan_end_date }}</p>
+                {% else %}
+                    <p>План. окончание: {{ issue.plan_end_date }}</p>
+                {% endif %}
+                {% if issue.assignee|length > 0 %}
+                    <p>Исполнитель: {issue.assignee.user.first_name} {issue.assignee.user.last_name.first}.</p>
+                {% else %}
+                    <p>Исполнитель: не назначен</p>
+                {% endif %}
+                {% if issue.created_by|length > 0 %}
+                    <p>Создатель: {issue.created_by.user.first_name} {issue.created_by.user.last_name.first}.</p>
+                {% else %}
+                    <p>Создатель: не определен</p>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>Задач не найдено! Требуется создать задачу для ее появления в списке</p>
+    {% endfor %}
+{% endblock content %}

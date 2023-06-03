@@ -62,9 +62,17 @@ footer {
     text-decoration: none;
 }
 
+.project_in_list:hover {
+    background-color: rgba(176, 255, 124, 0.53);
+}
+
 .project_in_list a {
     text-decoration: none;
     color: black;
+}
+
+.project_in_list a:hover {
+    background-color: rgba(176, 255, 124, 0.53);
 }
 
 .left-part {
@@ -123,6 +131,33 @@ footer {
 }
 
 .mainpage a:hover {
-    background: rgb(255, 244, 183);
+    background-color: rgba(176, 255, 124, 0.53);
     border-style: none;
+}
+
+.addobject {
+    margin-left: 0;
+    width: 65vw;
+    margin-bottom: 3px;
+}
+
+.addobject a{
+    display: inline-block;
+    border-radius: 12px;
+    border-style: inset;
+    text-align: center;
+    background: #89de5d;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: large;
+    width: 20vw;
+    height: 0.9em;
+    padding-top: 0.9em;
+    padding-bottom: 1.1em;
+    margin-left: 12px;
+}
+
+.addobject a:hover{
+    background-color: rgba(176, 255, 124, 0.53);
 }

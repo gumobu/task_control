@@ -21,11 +21,11 @@ class Issue(models.Model):
     created_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата создания')  # Дата создания задачи
     updated_date = models.DateTimeField(default=timezone.now(), verbose_name='Дата обновления')  # Дата обновления задачи
     plan_end_date = models.DateField(null=False, default=timezone.now().date() + timezone.timedelta(7), verbose_name="Плановая дата завершения")
-    fact_end_date = models.DateTimeField(null=True, verbose_name='Фактическая дата завершения задачи')  # Дата завершения задачи
-    parent_issue = models.ForeignKey('self', on_delete=models.CASCADE, null=True, related_name='child')  # Идентификатор родительской задачи
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_by')  # Автор задачи
-    assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='assignee')  # Исполнитель задачи
-    watcher = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='watcher')  # Наблюдатель задачи
+    fact_end_date = models.DateTimeField(null=True, blank=True, verbose_name='Фактическая дата завершения задачи')  # Дата завершения задачи
+    parent_issue = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='child')  # Идентификатор родительской задачи
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='created_by')  # Автор задачи
+    assignee = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='assignee')  # Исполнитель задачи
+    watcher = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='watcher')  # Наблюдатель задачи
 
     def end(self):
         """Метод для завершения задачи"""

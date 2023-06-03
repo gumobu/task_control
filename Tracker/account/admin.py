@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Division, Position, Profile
 
-# Register your models here.
+
+admin.site.register(Division)
+admin.site.register(Position)
+admin.site.register(Profile)
