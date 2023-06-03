@@ -2,9 +2,12 @@
 
 {% block content %}
     <h1>[{{ issue_id }}] {{ issue.title }}</h1>
+    <div class="addobject">
+        <a href="{% url 'update_issue' issue_id=issue_id %}">Изменить задачу</a>
+    </div>
     <h1>Описание задачи</h1>
     {% if issue.description|length > 0 %}
-        <p>{{ issue.description }}</p>
+        <p>{{ issue.description|linebreaksbr }}</p>
     {% else %}
         <p>Описание задачи не заполнено</p>
     {% endif %}

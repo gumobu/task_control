@@ -4,7 +4,7 @@
     <h1>{{ page_title }}</h1>
     <h1>Задачи в проекте</h1>
     <div class="addobject">
-        <a>Добавить задачу</a>
+        <a href="{% url 'create_issue' %}">Добавить задачу</a>
     </div>
     {% for issue in issues %}
         <div>
@@ -33,13 +33,13 @@
                 {% else %}
                     <p>План. окончание: {{ issue.plan_end_date }}</p>
                 {% endif %}
-                {% if issue.assignee|length > 0 %}
-                    <p>Исполнитель: {issue.assignee.user.first_name} {issue.assignee.user.last_name.first}.</p>
+                {% if issue.get_assignee %}
+                    <p>Исполнитель: {{ issue.get_assignee.first_name }} {{ issue.get_assignee.last_name|first }}.</p>
                 {% else %}
                     <p>Исполнитель: не назначен</p>
                 {% endif %}
-                {% if issue.created_by|length > 0 %}
-                    <p>Создатель: {issue.created_by.user.first_name} {issue.created_by.user.last_name.first}.</p>
+                {% if issue.get_creator %}
+                    <p>Создатель: {{ issue.get_creator.first_name }} {{ issue.get_creator.last_name|first }}.</p>
                 {% else %}
                     <p>Создатель: не определен</p>
                 {% endif %}

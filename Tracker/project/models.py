@@ -10,21 +10,8 @@ class Project(models.Model):
     id = models.AutoField(unique=True, primary_key=True, verbose_name='Проект')  # Идентификатор проекта
     title = models.CharField(max_length=200, unique=True, verbose_name='Название')  # Название проекта
 
-    def end(self):
-        """Метод для завершения проекта"""
-        self.end_date = timezone.now()
-        self.save()
-
-    def create(self):
-        """Метод для создания проекта"""
-        pass
-
-    def update(self):
-        """Метод обновления проекта"""
-        pass
-
     def __str__(self):
-        """Строковое представление проекта - его идентификатор"""
+        """Строковое представление проекта"""
         return f'[{self.id}] {self.title}'
 
     def get_absolute_url(self):
@@ -38,3 +25,6 @@ class Project(models.Model):
             raise ValidationError('Плановая дата окончания установлена не больше текущей')
         return date
 
+    @property
+    def get_issues_count(self):
+        return self.issues.all().count()

@@ -27,19 +27,6 @@ class Issue(models.Model):
     assignee = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='assignee')  # Исполнитель задачи
     watcher = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='watcher')  # Наблюдатель задачи
 
-    def end(self):
-        """Метод для завершения задачи"""
-        self.end_date = timezone.now()
-        self.save()
-
-    def create(self):
-        """Метод для создания задачи"""
-        pass
-
-    def update(self):
-        """Метод обновления задачи"""
-        pass
-
     def __str__(self):
         """Строковое представление задачи - ее идентификатор"""
         return str(self.id)
@@ -47,6 +34,14 @@ class Issue(models.Model):
     @property
     def is_over_due(self):
         return timezone.now().date() > self.plan_end_date
+
+    @property
+    def get_assignee(self):
+        return self.assignee
+
+    @property
+    def get_creator(self):
+        return self.created_by
 
     def get_absolute_url(self):
         return reverse('issue', kwargs={'issue_id':self.id})

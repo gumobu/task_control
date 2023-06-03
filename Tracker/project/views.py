@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from .forms import AddProject
 
@@ -22,10 +22,13 @@ def project_detail(request, project_id):
 
 
 def create_project(request):
+    page_title = 'Создание проекта'
+    title = page_title
     if request.method == 'POST':
         form = AddProject(request.POST)
         if form.is_valid():
             project = form.save()
+            return redirect('project', project_id=project.id)
     else:
         form = AddProject()
     return render(request, 'project/create_project.html', locals())
