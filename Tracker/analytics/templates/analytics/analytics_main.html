@@ -1,0 +1,11 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1>{{ page_title }}</h1>
+    <div class="addobject" style="display: inline">
+        <a href="{% url 'by_users' %}">Разбивка по пользователям</a>
+    </div>
+    <div class="addobject" style="display: inline">
+        <a href="{% url 'by_projects' %}">Разбивка по проектам</a>
+    </div>
+{% endblock content %}

@@ -71,10 +71,6 @@ footer {
     color: black;
 }
 
-.project_in_list a:hover {
-    background-color: rgba(176, 255, 124, 0.53);
-}
-
 .left-part {
     width: calc(65vw * 0.6);
     display: inline-block;
@@ -174,4 +170,24 @@ footer {
 
 .form-submit-button:hover {
     background-color: rgba(176, 255, 124, 0.53);
+}
+
+.left-part-anal {
+    width: calc(65vw * 0.5);
+    display: inline-block;
+}
+
+.right-part-anal {
+    position: absolute;
+    display: inline-block;
+}
+
+.left-part-anal p {
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+.right-part-anal p {
+    margin-top: 0;
+    margin-bottom: 0;
 }

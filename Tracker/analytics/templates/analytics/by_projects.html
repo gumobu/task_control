@@ -1,0 +1,23 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+  <h1>{{ page_title }}</h1>
+  {% for project in projects %}
+        <div>
+          <div class="left-part-anal">
+            <p class="project_in_list">
+              <b>
+                <a href="{{ project.get_absolute_url }}"> [{{ project.id }}] {{ project.title }}</a>
+              </b>
+            </p>
+          </div>
+          <div class="right-part-anal">
+            <p>Задач в проекте: {{ project.total }}</p>
+            <p>Завершено задач: {{ project.close }}</p>
+            <p>Просрочено задач: {{ project.overdue }}</p>
+          </div>
+        </div>
+    {% empty %}
+        <p>Проектов не найдено! Требуется создать новый, прежде чем просматривать список</p>
+    {% endfor %}
+{% endblock content %}
